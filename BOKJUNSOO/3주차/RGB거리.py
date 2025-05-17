@@ -1,3 +1,4 @@
+# re commit
 n = int(input())
 
 cost = [[0]*3 for _ in range(n+1)]
