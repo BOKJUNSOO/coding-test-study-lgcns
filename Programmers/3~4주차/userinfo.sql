@@ -1,0 +1,19 @@
+SELECT 
+       TO_CHAR(SALES_DATE,'YYYY') YEAR,
+       -- 그냥 TO_CHAR하면 01, 02 이렇게 나와서 TO_NUMBER로 덮어쓰기
+       TO_NUMBER(TO_CHAR(SALES_DATE,'MM')) MONTH,
+       -- COUNT(USER_ID)는 한사람이 한달에 여러개 살수도 있어 DISTINCT
+       COUNT(DISTINCT A.USER_ID) PURCHASED_USERS,
+       -- 2021년에 가입한 전체 유저수를 구하고자 써브쿼리 사용
+       ROUND(COUNT(DISTINCT A.USER_ID)/
+       (SELECT COUNT(USER_ID) 
+          FROM USER_INFO 
+         WHERE TO_CHAR(JOINED,'YYYY') = '2021')
+       ,1) PUCHASED_RATIO
+  FROM ONLINE_SALE A, USER_INFO B
+ WHERE A.USER_ID = B.USER_ID
+   -- 이쪽에도 2021년 가입 체크 필요
+   AND TO_CHAR(B.JOINED,'YYYY') = '2021'
+ --년/월별로 정렬하고자 GROUP BY, ORDER BY 사용
+ GROUP BY TO_CHAR(SALES_DATE,'YYYY'), TO_CHAR(SALES_DATE,'MM')
+ ORDER BY YEAR, MONTH
