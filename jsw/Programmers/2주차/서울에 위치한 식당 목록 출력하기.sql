@@ -18,9 +18,9 @@ where address like '서울%' and review_score is not null
 group by i.rest_id
 order by avg(review_score) desc, favorites desc
 
-회고록
-흠...
-left join과 그냥 join의 차이점을 찾아봤는데 
-join은 교집합 left join은 합집합이라고 하는데 
-그건 join하는 키에 대해서만 그런걸로 알고있는데
-제가 잘못알고있는걸까요..? 아시는분은 좀 가르쳐 주시면 감사하겠습니다ㅎㅎ...
+-- 회고록
+-- 흠...
+-- left join과 그냥 join의 차이점을 찾아봤는데 
+-- join은 교집합 left join은 합집합이라고 하는데 
+-- 그건 join하는 키에 대해서만 그런걸로 알고있는데
+-- 제가 잘못알고있는걸까요..? 아시는분은 좀 가르쳐 주시면 감사하겠습니다ㅎㅎ...
