@@ -1,7 +1,6 @@
 #수빈 점 N, 동생 점 K
 from collections import deque
 N ,K = map(int, input().split())
-day_count = 0
 day_list = [0]*(100000+1)
 q = deque()
 q.append(N)
